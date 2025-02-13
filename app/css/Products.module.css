@@ -1,0 +1,20 @@
+.container {
+}
+.list {
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listItem {
+  max-width: 200px;
+  border: 1px solid #d3d3d3;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.name {
+  font-size: 16px;
+  margin-bottom: 20px;
+}

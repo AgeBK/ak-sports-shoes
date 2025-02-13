@@ -1,0 +1,17 @@
+{
+  "navItems": ["Mens", "Womens", "Kids"],
+  "navSubItems": {
+    "Mens": ["Running", "Soccer", "Hiking", "Tennis"],
+    "Womens": ["Running", "Soccer", "Hiking", "Tennis"],
+    "Kids": ["Running", "Soccer", "Hiking", "Sandals"]
+  },
+  "imgPath": "/assets/img/",
+  "errorMsg": "Some Errror Message",
+  "shoeSizes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "delivery": [
+    { "text": "Free Delivery in Australia", "img": "delivery.jpg" },
+    { "text": "30 Days Returns & Exchanges", "img": "award.jpg" },
+    { "text": "Genuine Product", "img": "thumb.jpg" },
+    { "text": "Australian Retailer", "img": "aust.jpg" }
+  ]
+}

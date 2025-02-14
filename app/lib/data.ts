@@ -33,10 +33,10 @@ export async function fetchProductById(query: string) {
       `;
 
     const product = data.rows[0];
-    console.log("fetchProductById");
-    console.log("query: " + query);
-    console.log("product");
-    console.log(product);
+    // console.log("fetchProductById");
+    // console.log("query: " + query);
+    // console.log("product");
+    // console.log(product);
 
     return product ? camelise(product) : undefined; // convert db column names to camel case (eg: price_normal to priceNormal)
   } catch (err) {

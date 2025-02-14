@@ -2,7 +2,7 @@ import { fetchCategoryPageData } from "../../lib/utils";
 import { Suspense } from "react";
 import Products from "../../ui/products";
 
-export default async function Home() {
+export default function Home() {
   const promise = fetchCategoryPageData();
 
   return (

@@ -1,0 +1,19 @@
+.cart {
+  background: green;
+  padding: 20px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.close {
+  font-size: 24px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 24px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 4px 13px;
+}

@@ -4,6 +4,7 @@ import {
   fetchProductsByCategory,
   fetchProducstByCatSubCat,
   fetchProductsPriceDrop,
+  fetchProductById,
 } from "@/app/lib/data";
 
 const sentenceCase = (s: string) => {
@@ -19,12 +20,12 @@ const sentenceCase = (s: string) => {
   return s;
 };
 
-export const formatCurrency = (amount: number) => {
-  return (amount / 100).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-};
+// export const formatCurrency = (amount: number) => {
+//   return (amount / 100).toLocaleString("en-US", {
+//     style: "currency",
+//     currency: "USD",
+//   });
+// };
 
 const currency = (val: number) =>
   new Intl.NumberFormat("en-US", {
@@ -32,9 +33,19 @@ const currency = (val: number) =>
     currency: "USD",
   }).format(val);
 
-const fetchCategoryPageData = async () => {
-  const test = await fetchProducts();
-  return test;
+const fetchCategoryPageData = async (arg1: string, arg2?: string) => {
+  console.log("arg1");
+  console.log(arg1);
+
+  let test = [];
+  let test2 = [];
+  if (arg1) {
+    test2 = await fetchProductById(arg1);
+  } else {
+    console.log("arg1 supplied");
+    test = await fetchProducts();
+  }
+  return test.length > 0 ? test : test2;
 };
 
 const camelise = (product: DataProps) => {

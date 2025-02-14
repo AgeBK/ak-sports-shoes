@@ -1,0 +1,57 @@
+.p {
+}
+
+.container {
+  text-align: center;
+}
+
+.currentPrice {
+  font-size: 20px;
+}
+
+.beforePrice {
+  font-size: 16px;
+}
+
+.now {
+  display: block;
+}
+
+.percentage {
+  background-color: #f00;
+  color: #fff;
+  padding: 2px 4px;
+  font-size: 11px;
+  display: inline-block;
+}
+
+.price {
+  font-size: 18px;
+  display: block;
+}
+
+/* todo */
+.was {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.product {
+  margin-bottom: 20px;
+}
+
+.product .currentPrice {
+  font-size: 36px;
+  color: darkgreen;
+  text-shadow: 1px 1px #000;
+}
+
+.product .beforePrice {
+  font-size: 18px;
+  color: #555;
+}
+
+.product .percentage {
+  padding: 0 2px;
+  font-size: 14px;
+}

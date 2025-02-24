@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.imgs {
+  margin-right: 20px;
+}
+
 .info {
   font-size: 18px;
   margin-bottom: 20px;
@@ -52,6 +56,29 @@
   cursor: pointer;
 }
 
+.strike {
+  position: relative;
+  color: #d3d3d3;
+  font-weight: bold;
+
+  &:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 45%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: #d3d3d3;
+    -webkit-transform: skewY(-40deg);
+    -moz-transform: skewY(-40deg);
+    transform: skewY(-40deg);
+  }
+}
+
+.selected {
+  background-color: green;
+}
+
 .deliveryList {
   display: flex;
   text-align: center;
@@ -83,9 +110,6 @@
   background-color: green;
   color: #fff;
   padding: 20px;
-}
-
-.info {
 }
 
 .details li {

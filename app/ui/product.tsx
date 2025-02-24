@@ -7,10 +7,19 @@ import appData from "../lib/appData.json";
 import { currency, sentenceCase } from "../lib/utils";
 import { use, useState } from "react";
 import Button from "./Button";
+import Modal from "./Modal";
+import { DataProps } from "../lib/definitions";
 
-export default function Product({ promise }) {
+type ProductProps = {
+  promise: Promise<DataProps>;
+};
+
+export default function Product({ promise }: ProductProps) {
   const [shoeSize, setShoeSize] = useState(0);
-  const data = use(promise);
+  const [show, setShow] = useState(false);
+  const [item, setItem] = useState<JSX.Element>();
+
+  const data: DataProps = use(promise);
   const { shoeSizes, delivery } = appData;
 
   const {
@@ -21,7 +30,7 @@ export default function Product({ promise }) {
     catchLine,
     colour,
     components,
-    designFor,
+    // designFor,
     gender,
     productNature,
     price,
@@ -31,28 +40,46 @@ export default function Product({ promise }) {
     sport,
   } = data;
 
-  const shoe1 = `${modelId}-1.webp`;
-  const shoe2 = `${modelId}-2.webp`;
+  const imgShoe1 = `${modelId}-1.webp`;
+  const imgShoe2 = `${modelId}-2.webp`;
+  const imgSizeChart: JSX.Element = (
+    <Img
+      imgSrc={"SizeChart.webp"}
+      imgAlt={"Size chart"}
+      imgWidth={600}
+      imgHeight={600}
+    />
+  );
+
+  const handleChart = () => {
+    setShow(true);
+    setItem(imgSizeChart);
+  };
 
   const test = () => {
     console.log("test");
   };
+
   const handleShoeSize = (val: number) => {
-    console.log(val);
+    if (shoeSize === val) {
+      setShoeSize(0);
+    } else {
+      setShoeSize(val);
+    }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.imgs}>
         <Img
-          imgSrc={shoe1}
+          imgSrc={imgShoe1}
           imgAlt={name}
           imgWidth={400}
           imgHeight={400}
           imgPriority={false}
         />
         <Img
-          imgSrc={shoe2}
+          imgSrc={imgShoe2}
           imgAlt={name}
           imgWidth={400}
           imgHeight={400}
@@ -77,14 +104,14 @@ export default function Product({ promise }) {
             <div className={styles.chart}>
               <div className={styles.sizeImg}>
                 <Img
-                  imgSrc={"sizeIco.svg"}
-                  imgAlt={"sizeChart"}
+                  imgSrc={"measuringTape.svg"}
+                  imgAlt={"imgSizeChart"}
                   imgWidth={30}
                   imgHeight={25}
                 />
               </div>
             </div>
-            <Button onClick={test} css="chart">
+            <Button onClick={handleChart} css="chart">
               View size chart
             </Button>
           </div>
@@ -108,6 +135,58 @@ export default function Product({ promise }) {
           <Button onClick={test} css="cart">
             Add to cart
           </Button>
+          <ul className={styles.deliveryList}>
+            {delivery.map((val) => {
+              const { text, img } = val;
+              return (
+                <li key={text}>
+                  <Img
+                    imgSrc={img}
+                    imgAlt={text}
+                    imgWidth={40}
+                    imgHeight={40}
+                  />
+                  <div className={styles.deliveryText}>{text}</div>
+                </li>
+              );
+            })}
+          </ul>
+          <div className={styles.infoBlock}>
+            <h3>Features</h3>
+            <div>{components}</div>
+          </div>
+          <div className={styles.infoBlock}>
+            <h3>Product Details</h3>
+            <ul className={styles.details}>
+              <li>
+                <b>Brand:</b> <span>{sentenceCase(brand)}</span>
+              </li>
+              <li>
+                <b>Sport:</b> <span>{sentenceCase(sport.join(", "))}</span>
+              </li>
+              <li>
+                <b>Gender:</b> <span>{sentenceCase(gender.join(", "))}</span>
+              </li>
+              <li>
+                <b>Product Nature:</b>
+                <span>{sentenceCase(productNature)}</span>
+              </li>
+              <li>
+                <b>Available:</b>
+                <span> {available ? "In stock" : "Out of stock"}</span>
+              </li>
+              {colour && (
+                <li>
+                  <b>Colour:</b> <span> {sentenceCase(colour)}</span>
+                </li>
+              )}
+            </ul>
+            {show ? (
+              <Modal show={show} setShow={setShow}>
+                {item}
+              </Modal>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

@@ -1,26 +1,21 @@
-import styles from "@/app/css/Price.module.css";
 import { currency } from "../lib/utils";
+import styles from "@/app/css/Price.module.css";
+
+type PriceProps = {
+  price: number;
+  priceBeforeDiscount: number;
+  percentage: number;
+  css?: string;
+};
 
 export default function Price({
   price,
   priceBeforeDiscount,
   percentage,
   css = "",
-}: {
-  price: number;
-  priceBeforeDiscount: number;
-  percentage: number;
-  css?: string;
-}) {
-  //   console.log(percentage);
-
-  console.log("css");
-  console.log(css);
-
+}: PriceProps) {
   const formatedPrice = currency(price);
-
   const p = <strong className={styles.currentPrice}>{formatedPrice}</strong>;
-
   const pbd = (
     <>
       <strong className={styles.currentPrice}>{formatedPrice}</strong>

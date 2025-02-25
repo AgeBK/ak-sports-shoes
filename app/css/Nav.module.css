@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.nav {
+  display: flex;
+  padding: 5px;
+  font-weight: bold;
+  position: absolute;
+  top: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.navItem {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.navItem a {
+  border-right: 1px solid #000;
+  width: 100%;
+  display: inline-block;
+}
+
+.navItem a:last-child {
+  border-right: 0;
+}
+
+/* .navItem:not(:hover) .subNav {
+  display: none;
+} */
+
+.navItem:not(:hover) .subNav.mens,
+.navItem:not(:hover) .subNav.womens,
+.navItem:not(:hover) .subNav.kids {
+  display: none;
+}
+
+.subNav {
+  /* border: 0; */
+  z-index: 1;
+  background-color: #fff;
+  position: relative;
+}
+
+.subNav li {
+  font-size: 14px;
+  font-weight: normal;
+}

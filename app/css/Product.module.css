@@ -3,7 +3,13 @@
 }
 
 .imgs {
-  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-left: 40px;
+  max-width: 760px;
 }
 
 .info {
@@ -39,10 +45,10 @@
 }
 
 .shoeSizes {
-  padding: 15px 18px;
+  padding: 12px 15px;
   border: 1px solid #d3d3d3;
   background-color: #f6f6f6;
-  margin-right: 30px;
+  margin-right: 10px;
   display: inline-block;
   cursor: not-allowed;
   margin-bottom: 20px;
@@ -77,6 +83,12 @@
 
 .selected {
   background-color: green;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .deliveryList {
@@ -124,4 +136,10 @@
 
 .details li span {
   text-align: right;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
 }

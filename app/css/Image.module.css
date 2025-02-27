@@ -1,0 +1,34 @@
+.product130h {
+  position: relative;
+  height: 130px;
+}
+
+.productShoe {
+  position: relative;
+  height: 400px;
+  width: 400px;
+}
+
+/* @media screen and (max-width: 1200px) {
+  .product520h {
+    position: relative;
+    height: 360px;
+    border: 1px solid red;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .product520h {
+    position: relative;
+    height: 320px;
+    border: 1px solid yellow;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .product520h {
+    position: relative;
+    height: 280px;
+    border: 1px solid green;
+  }
+} */

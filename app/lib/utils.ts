@@ -1,10 +1,8 @@
 import { DataProps } from "./definitions";
 import {
-  fetchProducts,
   fetchProductsByCategory,
   fetchProducstByCatSubCat,
   fetchProductsPriceDrop,
-  fetchProductById,
 } from "@/app/lib/data";
 
 const sentenceCase = (s: string) => {
@@ -20,12 +18,12 @@ const sentenceCase = (s: string) => {
   return s;
 };
 
-// export const formatCurrency = (amount: number) => {
-//   return (amount / 100).toLocaleString("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//   });
-// };
+export const formatCurrency = (amount: number) => {
+  return (amount / 100).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+};
 
 const currency = (val: number) =>
   new Intl.NumberFormat("en-US", {
@@ -34,18 +32,41 @@ const currency = (val: number) =>
   }).format(val);
 
 const fetchCategoryPageData = async (arg1: string, arg2?: string) => {
+  console.log("fetchCategoryPageData");
   console.log("arg1");
   console.log(arg1);
+  console.log("arg2");
+  console.log(arg2);
 
-  let test = [];
-  let test2 = [];
-  if (arg1) {
-    test2 = await fetchProductById(arg1);
+  let arr: DataProps[] = [];
+  if (arg2?.toString()) {
+    switch (arg1) {
+      case "mens":
+      case "womens":
+      case "kids":
+        arr = await fetchProducstByCatSubCat(
+          sentenceCase(arg1),
+          sentenceCase(arg2)
+        );
+        break;
+      default:
+        break;
+    }
   } else {
-    console.log("arg1 supplied");
-    test = await fetchProducts();
+    switch (arg1) {
+      case "price-drop":
+        arr = await fetchProductsPriceDrop();
+        break;
+      case "mens":
+      case "womens":
+      case "kids":
+        arr = await fetchProductsByCategory(sentenceCase(arg1));
+        break;
+      default:
+        break;
+    }
   }
-  return test.length > 0 ? test : test2;
+  return arr;
 };
 
 const camelise = (product: DataProps) => {

@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { DataProps } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
-import { camelise, cameliseArr, sentenceCase } from "./utils";
+import { cameliseArr, sentenceCase } from "./utils";
 
 export async function fetchProducts() {
   // noStore() prevents the response from being cached. (good for dev) TODO
@@ -14,7 +14,6 @@ export async function fetchProducts() {
       `;
 
     const shoes2 = data.rows;
-    // shoes2.reverse();
     return cameliseArr(shoes2);
   } catch (err) {
     console.error("Database Error:", err);
@@ -33,12 +32,7 @@ export async function fetchProductById(query: string) {
       `;
 
     const product = data.rows[0];
-    // console.log("fetchProductById");
-    // console.log("query: " + query);
-    // console.log("product");
-    // console.log(product);
-
-    return product ? camelise(product) : undefined; // convert db column names to camel case (eg: price_normal to priceNormal)
+    return product; // convert db column names to camel case (eg: price_normal to priceNormal)
   } catch (err) {
     console.error("Database Error:", err);
     throw new Error("Failed to fetch product by id.");

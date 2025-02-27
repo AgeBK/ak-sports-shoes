@@ -32,11 +32,11 @@ const currency = (val: number) =>
   }).format(val);
 
 const fetchCategoryPageData = async (arg1: string, arg2?: string) => {
-  console.log("fetchCategoryPageData");
-  console.log("arg1");
-  console.log(arg1);
-  console.log("arg2");
-  console.log(arg2);
+  // console.log("fetchCategoryPageData");
+  // console.log("arg1");
+  // console.log(arg1);
+  // console.log("arg2");
+  // console.log(arg2);
 
   let arr: DataProps[] = [];
   if (arg2?.toString()) {

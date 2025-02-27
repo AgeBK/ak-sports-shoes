@@ -15,7 +15,7 @@
 
 .navItem {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   width: 100%;
 }
@@ -28,6 +28,10 @@
 
 .navItem a:last-child {
   border-right: 0;
+}
+
+.navItem a:hover {
+  color: #555;
 }
 
 /* .navItem:not(:hover) .subNav {
@@ -48,6 +52,7 @@
 }
 
 .subNav li {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
+  padding: 2px;
 }

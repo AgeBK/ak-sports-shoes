@@ -1,0 +1,24 @@
+.container {
+  margin: 0 0 20px 20px;
+}
+
+.container li {
+  display: inline-block;
+  padding: 0 20px 3px;
+  background: darkgreen;
+  transform: skew(-20deg);
+  cursor: pointer;
+  opacity: 0.8;
+  margin-right: 5px;
+}
+
+.container li:hover {
+  opacity: 1;
+}
+
+.container li a {
+  display: block;
+  transform: skew(20deg);
+  color: #fff;
+  font-size: 12px;
+}

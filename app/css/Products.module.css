@@ -1,6 +1,11 @@
 .container {
 }
 
+.itemCount {
+  font-size: 18px;
+  margin: 15px 0;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -13,6 +18,7 @@
   text-align: center;
   flex: 1;
 }
+
 .listItem:hover {
   border: 1px solid #999;
 }

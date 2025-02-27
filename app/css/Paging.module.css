@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.container button {
+  font-size: 18px;
+  /* margin: 0 5px; */
+  padding: 10px 15px;
+}
+
+.container button:disabled {
+  color: #d3d3d3;
+  cursor: default;
+}
+
+.buttonCont {
+  display: flex;
+}
+
+.buttonCont li {
+  margin: 0 5px;
+  border: 1px solid #d3d3d3;
+}
+
+.highlight {
+  background-color: #000;
+  color: #fff;
+}

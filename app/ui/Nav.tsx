@@ -1,8 +1,9 @@
-import { navSubItems } from "@/app/lib/appData.json";
+import appData from "@/app/lib/appData.json";
 import styles from "@/app/css/Nav.module.css";
 import Link from "next/link";
 
 export default function Nav() {
+  const { navSubItems } = appData;
   return (
     <nav className={styles.container}>
       <ul className={styles.nav}>

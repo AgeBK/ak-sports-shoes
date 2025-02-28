@@ -9,6 +9,7 @@ import { camelise, currency, sentenceCase } from "../lib/utils";
 import { use, useState } from "react";
 import Button from "./Button";
 import Modal from "./Modal";
+import Error from "./ErrorMain";
 import { DataProps } from "../lib/definitions";
 
 type ProductProps = {
@@ -32,7 +33,7 @@ export default function Product({ promise }: ProductProps) {
       catchLine,
       colour,
       components,
-      // designFor,
+      designFor,
       gender,
       productNature,
       price,
@@ -88,6 +89,7 @@ export default function Product({ promise }: ProductProps) {
         <div className={styles.description}>
           <h2 className={styles.name}>{name}</h2>
           <div className={styles.infoBlock}>{catchLine}</div>
+          <div className={styles.infoBlock}>{designFor}</div>
           <Price
             price={price}
             priceBeforeDiscount={priceBeforeDiscount}
@@ -191,6 +193,6 @@ export default function Product({ promise }: ProductProps) {
       </div>
     );
   } else {
-    return <h1>Error</h1>;
+    return <Error message="An error has occurred" />;
   }
 }

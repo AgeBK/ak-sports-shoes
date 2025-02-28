@@ -36,11 +36,11 @@ export type ModalProps = {
 // before item in cart
 
 export type AddToCartProps = {
-  id: string;
+  id: number;
   name: string;
   brand: string;
   price: number;
-  quantity: number;
+  qty: number;
 };
 
 export type CartItemProps = {

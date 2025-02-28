@@ -1,15 +1,16 @@
 "use client";
 
 import styles from "@/app/css/Product.module.css";
-import Img from "./image";
+import Img from "./Image";
 import ImgFill from "./ImageFill";
-import Price from "./price";
+import Price from "./Price";
 import appData from "../lib/appData.json";
 import { camelise, currency, sentenceCase } from "../lib/utils";
 import { use, useState } from "react";
 import Button from "./Button";
 import Modal from "./Modal";
 import Error from "./ErrorMain";
+import AddToCart from "./AddToCart";
 import { DataProps } from "../lib/definitions";
 
 type ProductProps = {
@@ -26,6 +27,7 @@ export default function Product({ promise }: ProductProps) {
     data = camelise(data); // convert db column names to camel case (eg: price_normal to priceNormal)
     const { shoeSizes, delivery } = appData;
     const {
+      id,
       modelId,
       name,
       brand,
@@ -42,6 +44,7 @@ export default function Product({ promise }: ProductProps) {
       size,
       sport,
     } = data;
+
     const imgShoe1 = `${modelId}-1.webp`;
     const imgShoe2 = `${modelId}-2.webp`;
     const imgSizeChart: JSX.Element = (
@@ -56,10 +59,6 @@ export default function Product({ promise }: ProductProps) {
     const handleChart = () => {
       setShow(true);
       setItem(imgSizeChart);
-    };
-
-    const test = () => {
-      console.log("test");
     };
 
     const handleShoeSize = (val: number) => {
@@ -133,9 +132,13 @@ export default function Product({ promise }: ProductProps) {
                 );
               })}
             </div>
-            <Button onClick={test} css="cart">
-              Add to cart
-            </Button>
+            <AddToCart
+              id={id}
+              name={name}
+              brand={brand}
+              price={price}
+              qty={1}
+            />
             <ul className={styles.deliveryList}>
               {delivery.map((val) => {
                 const { text, img } = val;

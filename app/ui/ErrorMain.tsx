@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Img from "@/app/ui/image";
+import Img from "@/app/ui/Image";
 import styles from "@/app/css/Error.module.css";
 
 export default function ErrorMain({ message }: { message: string }) {

@@ -3,7 +3,7 @@ import { fetchCategoryPageData } from "@/app/lib/utils";
 import appData from "@/app/lib/appData.json";
 import { DataProps } from "@/app/lib/definitions";
 import { sentenceCase } from "@/app/lib/utils";
-import Products from "@/app/ui/products";
+import Products from "@/app/ui/Products";
 import styles from "@/app/css/Page.module.css";
 
 export default function Page({

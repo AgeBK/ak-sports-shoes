@@ -1,5 +1,5 @@
 import { Suspense, use } from "react";
-import Product from "@/app/ui/product";
+import Product from "@/app/ui/Product";
 import { fetchProductById } from "@/app/lib/data";
 import { DataProps } from "@/app/lib/definitions";
 

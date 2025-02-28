@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Img from "./image";
+import Img from "./Image";
 import Nav from "./Nav";
 import BreadCrumb from "./BreadCrumb";
 import styles from "@/app/css/Header.module.css";

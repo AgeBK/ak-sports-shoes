@@ -2,8 +2,8 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import Img from "@/app/ui/image";
-import Price from "./price";
+import Img from "@/app/ui/Image";
+import Price from "./Price";
 import Paging from "./Paging";
 import appData from "../lib/appData.json";
 import { DataProps } from "../lib/definitions";
@@ -11,10 +11,9 @@ import { sentenceCase } from "../lib/utils";
 import styles from "@/app/css/Products.module.css";
 
 export default function Products({
-  promise 
+  promise,
 }: {
   promise: Promise<DataProps[]>;
-
 }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [hover, setHover] = useState(false);

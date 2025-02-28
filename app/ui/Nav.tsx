@@ -9,8 +9,6 @@ export default function Nav() {
       <ul className={styles.nav}>
         {Object.entries(navSubItems).map(([key, value], ind) => {
           const k = key.toLowerCase();
-          console.log(k);
-
           return (
             <li className={styles.navItem} key={ind}>
               <Link href={`/${k}`}>{key}</Link>

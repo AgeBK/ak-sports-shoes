@@ -138,6 +138,11 @@
   text-align: right;
 }
 
+.errorMsg {
+  color: #f00;
+  text-align: center;
+}
+
 @media screen and (max-width: 800px) {
   .container {
     flex-direction: column;

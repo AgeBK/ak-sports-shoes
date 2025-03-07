@@ -8,8 +8,7 @@
 }
 
 .inner {
-  display: flex;
-  border-bottom: 1px solid #d3d3d3;
+  display: flex; 
   margin-bottom: 10px;
 }
 
@@ -19,6 +18,15 @@
 
 .logo {
   display: flex;
+}
+
+.subHdr {
+  display: flex;
+  padding: 0 20px;
+}
+
+.subHdr ul {
+  flex-grow: 1;
 }
 
 .ak {

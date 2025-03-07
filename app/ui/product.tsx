@@ -21,6 +21,7 @@ export default function Product({ promise }: ProductProps) {
   const [shoeSize, setShoeSize] = useState(0);
   const [show, setShow] = useState(false);
   const [item, setItem] = useState<JSX.Element>();
+  const [chooseSize, setChooseSize] = useState("");
   let data: DataProps = use(promise);
 
   if (data) {
@@ -66,6 +67,7 @@ export default function Product({ promise }: ProductProps) {
         setShoeSize(0);
       } else {
         setShoeSize(val);
+        setChooseSize("");
       }
     };
 
@@ -134,11 +136,17 @@ export default function Product({ promise }: ProductProps) {
             </div>
             <AddToCart
               id={id}
+              modelId={modelId}
               name={name}
               brand={brand}
               price={price}
+              priceBeforeDiscount={priceBeforeDiscount}
+              percentage={percentage}
+              shoeSize={shoeSize}
+              setChooseSize={setChooseSize}
               qty={1}
             />
+            <div className={styles.errorMsg}>{chooseSize}</div>
             <ul className={styles.deliveryList}>
               {delivery.map((val) => {
                 const { text, img } = val;

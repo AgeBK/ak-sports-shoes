@@ -3,9 +3,14 @@ import Button from "./Button";
 
 export default function AddToCart({
   id,
+  modelId,
   name,
   brand,
   price,
+  priceBeforeDiscount,
+  percentage,
+  shoeSize,
+  setChooseSize,
   qty,
 }: AddToCartProps) {
   const handleClick = () => {
@@ -13,7 +18,9 @@ export default function AddToCart({
     const strCart = localStorage.getItem("AKShoesCart");
     console.log(strCart);
 
-    if (strCart) {
+    if (shoeSize === 0) {
+      setChooseSize("Please choose a shoe size");
+    } else if (strCart) {
       // cart exists
       const cart = JSON.parse(strCart);
       console.log(cart);
@@ -29,7 +36,17 @@ export default function AddToCart({
         localStorage.setItem("AKShoesCart", JSON.stringify(cart));
       } else {
         // add new item to existing cart
-        const newItem = { id, name, brand, price, qty };
+        const newItem = {
+          id,
+          modelId,
+          name,
+          brand,
+          price,
+          priceBeforeDiscount,
+          percentage,
+          shoeSize,
+          qty,
+        };
         const newCart = [...cart, newItem];
         localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
       }
@@ -38,7 +55,19 @@ export default function AddToCart({
       const qty = 1;
       localStorage.setItem(
         "AKShoesCart",
-        JSON.stringify([{ id, name, brand, price, qty }])
+        JSON.stringify([
+          {
+            id,
+            modelId,
+            name,
+            brand,
+            price,
+            priceBeforeDiscount,
+            percentage,
+            shoeSize,
+            qty,
+          },
+        ])
       );
     }
   };

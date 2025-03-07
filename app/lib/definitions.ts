@@ -37,9 +37,14 @@ export type ModalProps = {
 
 export type AddToCartProps = {
   id: number;
+  modelId: number;
   name: string;
   brand: string;
   price: number;
+  priceBeforeDiscount: number;
+  percentage: number;
+  shoeSize: number;
+  setChooseSize: (chooseSize: string) => void;
   qty: number;
 };
 

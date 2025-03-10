@@ -1,60 +1,82 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Img from "@/app/ui/Image";
 import Button from "./Button";
 import Price from "./Price";
-import styles from "@/app/css/Cart.module.css";
+// import ErrorMain from "./ErrorMain";
 import { AddToCartProps } from "@/app/lib/definitions";
-import ErrorMain from "./ErrorMain";
+import { currency } from "../lib/utils";
+import styles from "@/app/css/Cart.module.css";
+import ImgFill from "./ImageFill";
 
 export default function Cart() {
-  let cart =[];
+  const [cart, setCart] = useState<AddToCartProps[]>([]);
+  const cartDetails = { total: 0, discounts: 0 };
 
-  const updateCart = (val: number) => {
-    console.log(val);
-    console.log(typeof val);
-
-    cart.qty = cart.qty + val;
-    localStorage.setItem("AKShoesCart", JSON.stringify(cart));
+  const updateCart = (val: number, index: number) => {
+    const newCart = [...cart];
+    newCart[index].qty = newCart[index].qty + val;
+    localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
+    setCart(newCart);
   };
 
-  if (localStorage) {
+  const deleteItem = (id: number) => {
+    const newCart = cart.filter((val) => val.id !== id);
+    localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
+    setCart(newCart);
+  };
+
+  useEffect(() => {
     const strCart = localStorage.getItem("AKShoesCart");
     if (strCart) {
-      // cart exists
-      cart = JSON.parse(strCart);
-      console.log(cart);
+      // cart exists, store in state
+      setCart(JSON.parse(strCart));
     }
-    return (
-      <div className={styles.container}>
-        <div className={styles.details}>
-          <h2 className={styles.hdr}>My Items</h2>
-          <div className={styles.product}>
-            {cart.map((val: AddToCartProps) => {
-              console.log("val");
-              console.log(val);
+  }, []);
 
-              const {
-                id,
-                modelId,
-                name,
-                brand,
-                price,
-                priceBeforeDiscount,
-                percentage,
-                shoeSize,
-                qty,
-              } = val;
-              const img = `${modelId}-1.webp`;
-              return (
-                <div className={styles.item} key={id}>
-                  <div className={styles.img}>
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.hdr}>My Items</h2>
+      <div className={styles.details}>
+        <div className={styles.items}>
+          {cart.map((val: AddToCartProps, i: number) => {
+            const {
+              id,
+              modelId,
+              name,
+              brand,
+              price,
+              priceBeforeDiscount,
+              percentage,
+              shoeSize,
+              qty,
+            } = val;
+            const img = `${modelId}-1.webp`;
+            cartDetails.total += priceBeforeDiscount * qty;
+            cartDetails.discounts = cartDetails.discounts +=
+              (priceBeforeDiscount - price) * qty;
+
+            return (
+              <div className={styles.itemContainer} key={id}>
+                <div className={styles.delete}>
+                  <Button css="cartBtn" onClick={() => deleteItem(id)}>
                     <Img
+                      imgSrc={"bin.svg"}
+                      imgAlt={"Delete"}
+                      imgWidth={14}
+                      imgHeight={14}
+                    />
+                    Delete
+                  </Button>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.img}>
+                    <ImgFill
                       imgSrc={img}
-                      imgAlt={"todo"}
-                      imgWidth={200}
-                      imgHeight={200}
+                      imgAlt={name}
+                      imgStyle="cartImage"
+                      imgPriority={true}
                     />
                   </div>
                   <div className={styles.info}>
@@ -72,43 +94,60 @@ export default function Cart() {
                     </div>
                   </div>
                   <div className={styles.options}>
-                    <Button css="cartBtn" onClick={() => updateCart(-1)}>
-                      -
-                    </Button>
-                    <div className={styles.amount}>{qty}</div>
-                    <Button css="cartBtn" onClick={() => updateCart(-1)}>
+                    <div className={styles.remove}>
+                      <Button
+                        css="cartBtn"
+                        disabled={qty === 0}
+                        onClick={() =>
+                          qty === 1 ? deleteItem(id) : updateCart(-1, i)
+                        }
+                      >
+                        -
+                      </Button>
+                    </div>
+                    <span className={styles.amount}>{qty}</span>
+                    <Button css="cartBtn" onClick={() => updateCart(1, i)}>
                       +
                     </Button>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-          <div className={styles.summaryContainer}>
-            <div className={styles.summaryHeader}>Cart Summary</div>
-            <div className={styles.summaryTable}>
-              <div className={styles.summaryRow}>
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.summaryContainer}>
+          <div className={styles.summary}>
+            <h2 className={styles.hdr}>Cart Summary</h2>
+            <div>Free delivery on all orders over $150</div>
+            <div className={styles.tbl}>
+              <div className={styles.row}>
                 <div>Subtotal</div>
-                <div>$350.00</div>
+                <div>{currency(cartDetails.total)}</div>
               </div>
-              <div className={styles.summaryRow}>
-                {/* <div>Item Discount</div>
-                <div>-$40.00</div> */}
+              <div className={styles.row}>
+                <div>Item Discount</div>
+                <div>-{currency(cartDetails.discounts)}</div>
               </div>
-              <div className={styles.summaryRow}>
+              <div className={styles.row}>
                 <div>Delivery</div>
-                <div>Calculated at checkout</div>
+                <div>
+                  {cartDetails.total - cartDetails.discounts > 150
+                    ? "Free"
+                    : "$9.95"}
+                </div>
               </div>
               <div className={styles.total}>
                 <div>Total</div>
-                <div>$XXXX.XX</div>
+                <div>{currency(cartDetails.total - cartDetails.discounts)}</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
-  } else {
-    <ErrorMain message="An error occurred" />; // TODO:
-  }
+      {/* <h3>TODO: Carousel here??</h3> */}
+    </div>
+  );
 }
+// else {
+//   <ErrorMain message="An error occurred" />; // TODO:
+// }

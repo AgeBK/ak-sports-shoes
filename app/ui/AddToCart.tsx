@@ -1,5 +1,6 @@
 import { AddToCartProps } from "../lib/definitions";
 import Button from "./Button";
+import styles from "@/app/css/AddToCart.module.css";
 
 export default function AddToCart({
   id,
@@ -73,10 +74,12 @@ export default function AddToCart({
   };
 
   return (
-    <Button css="cart" onClick={handleClick}>
-      Add to cart
-      {/* <CartImage itemAdded={isAdded} />
+    <div className={styles.addCartContainer}>
+      <Button css="addCart" onClick={handleClick}>
+        Add to cart
+        {/* <CartImage itemAdded={isAdded} />
       <span>{id === itemId ? "Item Added" : "Add to cart"}</span> */}
-    </Button>
+      </Button>
+    </div>
   );
 }

@@ -1,10 +1,18 @@
-.cart {
+.addCart {
   background: green;
   padding: 20px;
   width: 100%;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
+}
+
+.addCart:not(:active) {
+  transition: background-color 100ms step-end;
+}
+
+.addCart:active {
+  background: rgb(1, 78, 1);
 }
 
 .close {

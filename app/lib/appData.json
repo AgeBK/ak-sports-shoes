@@ -15,5 +15,6 @@
     { "text": "Australian Retailer", "img": "aust.jpg" }
   ],
   "categoryPageInfo": "Discover our wide range of [replace] shoes. We stand by the quality of our products and we can offer a warranty on most of our shoes in store",
-  "pageLimit": 20
+  "pageLimit": 20,
+  "deliveryFee": 9.95
 }

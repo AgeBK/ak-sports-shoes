@@ -1,13 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Img from "./Image";
 import Nav from "./Nav";
 import BreadCrumb from "./BreadCrumb";
-
+import CartHeader from "./CartHeader";
 import styles from "@/app/css/Header.module.css";
 
 export default function Header() {
+
+
   return (
     <header className={styles.container}>
       <div className={styles.inner}>
@@ -27,7 +30,7 @@ export default function Header() {
       </div>
       <div className={styles.subHdr}>
         <BreadCrumb />
-        <Link href="/cart">Cart</Link>
+        <CartHeader />
       </div>
     </header>
   );

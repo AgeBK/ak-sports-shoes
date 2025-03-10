@@ -6,26 +6,15 @@ import Button from "./Button";
 import Price from "./Price";
 // import ErrorMain from "./ErrorMain";
 import { AddToCartProps } from "@/app/lib/definitions";
-import { currency } from "../lib/utils";
-import styles from "@/app/css/Cart.module.css";
+import { currency, updateCart, deleteCart } from "../lib/utils";
+import AppData from "../lib/appData.json";
 import ImgFill from "./ImageFill";
+import styles from "@/app/css/Cart.module.css";
 
 export default function Cart() {
   const [cart, setCart] = useState<AddToCartProps[]>([]);
   const cartDetails = { total: 0, discounts: 0 };
-
-  const updateCart = (val: number, index: number) => {
-    const newCart = [...cart];
-    newCart[index].qty = newCart[index].qty + val;
-    localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
-    setCart(newCart);
-  };
-
-  const deleteItem = (id: number) => {
-    const newCart = cart.filter((val) => val.id !== id);
-    localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
-    setCart(newCart);
-  };
+  const { deliveryFee } = AppData;
 
   useEffect(() => {
     const strCart = localStorage.getItem("AKShoesCart");
@@ -34,6 +23,13 @@ export default function Cart() {
       setCart(JSON.parse(strCart));
     }
   }, []);
+
+  const getTotal = () =>
+    currency(
+      cartDetails.total -
+        cartDetails.discounts +
+        (cartDetails.total - cartDetails.discounts > 150 ? 0 : deliveryFee)
+    );
 
   return (
     <div className={styles.container}>
@@ -60,7 +56,10 @@ export default function Cart() {
             return (
               <div className={styles.itemContainer} key={id}>
                 <div className={styles.delete}>
-                  <Button css="cartBtn" onClick={() => deleteItem(id)}>
+                  <Button
+                    css="cartBtn"
+                    onClick={() => deleteCart(id, cart, setCart)}
+                  >
                     <Img
                       imgSrc={"bin.svg"}
                       imgAlt={"Delete"}
@@ -97,16 +96,21 @@ export default function Cart() {
                     <div className={styles.remove}>
                       <Button
                         css="cartBtn"
-                        disabled={qty === 0}
+                        // disabled={qty < 1}
                         onClick={() =>
-                          qty === 1 ? deleteItem(id) : updateCart(-1, i)
+                          qty === 1
+                            ? deleteCart(id, cart, setCart)
+                            : updateCart(-1, i, cart, setCart)
                         }
                       >
                         -
                       </Button>
                     </div>
                     <span className={styles.amount}>{qty}</span>
-                    <Button css="cartBtn" onClick={() => updateCart(1, i)}>
+                    <Button
+                      css="cartBtn"
+                      onClick={() => updateCart(1, i, cart, setCart)}
+                    >
                       +
                     </Button>
                   </div>
@@ -132,13 +136,13 @@ export default function Cart() {
                 <div>Delivery</div>
                 <div>
                   {cartDetails.total - cartDetails.discounts > 150
-                    ? "Free"
-                    : "$9.95"}
+                    ? 0
+                    : `$${deliveryFee}`}
                 </div>
               </div>
               <div className={styles.total}>
                 <div>Total</div>
-                <div>{currency(cartDetails.total - cartDetails.discounts)}</div>
+                <div>{getTotal()}</div>
               </div>
             </div>
           </div>

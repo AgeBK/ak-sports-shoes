@@ -1,4 +1,4 @@
-import { DataProps } from "./definitions";
+import { AddToCartProps, DataProps } from "./definitions";
 import {
   fetchProductsByCategory,
   fetchProducstByCatSubCat,
@@ -32,12 +32,6 @@ const currency = (val: number) =>
   }).format(val);
 
 const fetchCategoryPageData = async (arg1: string, arg2?: string) => {
-  // console.log("fetchCategoryPageData");
-  // console.log("arg1");
-  // console.log(arg1);
-  // console.log("arg2");
-  // console.log(arg2);
-
   let arr: DataProps[] = [];
   if (arg2?.toString()) {
     switch (arg1) {
@@ -90,12 +84,48 @@ const deCamelise = (s: string) => {
   return result.charAt(0).toUpperCase() + result.slice(1);
 };
 
+const updateCart = (
+  val: number,
+  index: number,
+  cart: AddToCartProps[],
+  setCart: (cart: AddToCartProps[]) => void
+) => {
+  const newCart = [...cart];
+  newCart[index].qty = newCart[index].qty + val;
+  localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
+  setCart(newCart);
+  itemsInCart();
+};
+
+const deleteCart = (
+  id: number,
+  cart: AddToCartProps[],
+  setCart: (cart: AddToCartProps[]) => void
+) => {
+  const newCart = cart.filter((val: AddToCartProps) => val.id !== id);
+  localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
+  setCart(newCart);
+};
+
+const itemsInCart = () => {
+  // JSON.parse(localStorage.getItem("AKShoesCart"))?.length;
+  const arr = JSON.parse(localStorage.getItem("AKShoesCart"));
+  const variable = arr.reduce((acc, val) => {
+    acc = acc + val.qty;
+    return acc;
+  }, 0);
+  console.log(variable);
+  return variable;
+};
+
 export {
   fetchCategoryPageData,
-  // sentenceCase,
   camelise,
   deCamelise,
   cameliseArr,
   sentenceCase,
   currency,
+  updateCart,
+  deleteCart,
+  itemsInCart,
 };

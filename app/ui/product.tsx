@@ -18,10 +18,10 @@ type ProductProps = {
 };
 
 export default function Product({ promise }: ProductProps) {
-  const [shoeSize, setShoeSize] = useState(0);
+  const [shoeSize, setShoeSize] = useState(0); // store shoe size on button click
   const [show, setShow] = useState(false);
   const [item, setItem] = useState<JSX.Element>();
-  const [chooseSize, setChooseSize] = useState("");
+  const [chooseSize, setChooseSize] = useState(""); // error message if user doesn't select shoe size (set on AddToCart)
   let data: DataProps = use(promise);
 
   if (data) {
@@ -135,16 +135,18 @@ export default function Product({ promise }: ProductProps) {
               })}
             </div>
             <AddToCart
-              id={id}
-              modelId={modelId}
-              name={name}
-              brand={brand}
-              price={price}
-              priceBeforeDiscount={priceBeforeDiscount}
-              percentage={percentage}
-              shoeSize={shoeSize}
-              setChooseSize={setChooseSize}
-              qty={1}
+              cartItems={{
+                id,
+                modelId,
+                name,
+                brand,
+                price,
+                priceBeforeDiscount,
+                percentage,
+                shoeSize,
+                setChooseSize,
+                qty: 1,
+              }}
             />
             <div className={styles.errorMsg}>{chooseSize}</div>
             <ul className={styles.deliveryList}>

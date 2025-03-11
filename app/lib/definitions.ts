@@ -44,28 +44,9 @@ export type AddToCartProps = {
   priceBeforeDiscount: number;
   percentage: number;
   shoeSize: number;
-  setChooseSize: (chooseSize: string) => void;
+  setChooseSize?: (chooseSize: string) => void;
+  setShoeSize?: (errMsg: string) => void;
   qty: number;
-};
-
-export type CartItemProps = {
-  name: string;
-  brand: string;
-  shortName: string;
-  price: number;
-  quantity: number;
-  deal?: {
-    priceTwoFor?: number;
-    priceTenFor?: number;
-    pricePercentOff?: number;
-  };
-  promotionDiscountCode?: string;
-  dealPrice?: number;
-};
-
-// item in cart
-export type CartProps = {
-  [id: string]: CartItemProps;
 };
 
 export type ButtonProps = {

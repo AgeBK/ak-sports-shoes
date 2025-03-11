@@ -1,75 +1,28 @@
 import { AddToCartProps } from "../lib/definitions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectCart, increment } from "../slices/cartSlice";
 import Button from "./Button";
 import styles from "@/app/css/AddToCart.module.css";
 
-export default function AddToCart({
-  id,
-  modelId,
-  name,
-  brand,
-  price,
-  priceBeforeDiscount,
-  percentage,
-  shoeSize,
-  setChooseSize,
-  qty,
-}: AddToCartProps) {
+type CartItemProps = {
+  cartItems: AddToCartProps;
+  // setShoeSize: () => void;
+};
+
+export default function AddToCart({ cartItems }: CartItemProps) {
+  let cart = useSelector(selectCart);
+  const dispatch = useDispatch();
+
+  const { shoeSize, setChooseSize } = cartItems;
+
   const handleClick = () => {
-    console.log("addToCart");
-    const strCart = localStorage.getItem("AKShoesCart");
-    console.log(strCart);
+    console.log("handleClick");
 
-    if (shoeSize === 0) {
+    if (shoeSize === 0 && setChooseSize) {
       setChooseSize("Please choose a shoe size");
-    } else if (strCart) {
-      // cart exists
-      const cart = JSON.parse(strCart);
-      console.log(cart);
-      const itemInCart = cart.find((val: AddToCartProps) => {
-        const cartId = val.id;
-        return cartId === id ? true : false;
-      });
-
-      if (itemInCart) {
-        console.log("itemInCart");
-        // if item exists in cart, increase qty
-        itemInCart.qty++;
-        localStorage.setItem("AKShoesCart", JSON.stringify(cart));
-      } else {
-        // add new item to existing cart
-        const newItem = {
-          id,
-          modelId,
-          name,
-          brand,
-          price,
-          priceBeforeDiscount,
-          percentage,
-          shoeSize,
-          qty,
-        };
-        const newCart = [...cart, newItem];
-        localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
-      }
     } else {
-      // no cart exists, create
-      const qty = 1;
-      localStorage.setItem(
-        "AKShoesCart",
-        JSON.stringify([
-          {
-            id,
-            modelId,
-            name,
-            brand,
-            price,
-            priceBeforeDiscount,
-            percentage,
-            shoeSize,
-            qty,
-          },
-        ])
-      );
+      dispatch(increment(cartItems));
     }
   };
 

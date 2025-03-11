@@ -94,7 +94,7 @@ const updateCart = (
   newCart[index].qty = newCart[index].qty + val;
   localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
   setCart(newCart);
-  itemsInCart();
+  // itemsInCart();
 };
 
 const deleteCart = (
@@ -107,16 +107,16 @@ const deleteCart = (
   setCart(newCart);
 };
 
-const itemsInCart = () => {
-  // JSON.parse(localStorage.getItem("AKShoesCart"))?.length;
-  const arr = JSON.parse(localStorage.getItem("AKShoesCart"));
-  const variable = arr.reduce((acc, val) => {
-    acc = acc + val.qty;
-    return acc;
-  }, 0);
-  console.log(variable);
-  return variable;
-};
+// const itemsInCart = () => {
+//   // JSON.parse(localStorage.getItem("AKShoesCart"))?.length;
+//   const arr = JSON.parse(localStorage.getItem("AKShoesCart"));
+//   const variable = arr.reduce((acc, val) => {
+//     acc = acc + val.qty;
+//     return acc;
+//   }, 0);
+//   console.log(variable);
+//   return variable;
+// };
 
 export {
   fetchCategoryPageData,
@@ -127,5 +127,5 @@ export {
   currency,
   updateCart,
   deleteCart,
-  itemsInCart,
+  // itemsInCart,
 };

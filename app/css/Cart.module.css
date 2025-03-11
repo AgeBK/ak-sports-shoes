@@ -122,6 +122,15 @@
 .summary .hdr {
 }
 
+.empty {
+  text-align: center;
+  padding: 20px;
+}
+
+.empty a {
+  color: darkgreen;
+}
+
 @media screen and (max-width: 1050px) {
   .details {
     flex-direction: column;

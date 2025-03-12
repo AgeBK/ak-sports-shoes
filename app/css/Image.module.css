@@ -21,13 +21,23 @@
     height: 200px;
     width: 200px;
   }
+
+  .productShoe {
+    position: relative;
+    height: 300px;
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 700px) {
   .cartImage {
-    position: relative;
     height: 150px;
     width: 150px;
+  }
+
+  .productShoe {
+    height: 250px;
+    width: 250px;
   }
 }
 
@@ -37,12 +47,15 @@
     height: 250px;
     width: 250px;
   }
+  .productShoe {
+    height: 200px;
+    width: 200px;
+  }
 }
-/* 
-@media screen and (max-width: 500px) {
-  .cartImage {
-    position: relative;
+
+@media screen and (max-width: 450px) {
+  .productShoe {
     height: 150px;
     width: 150px;
   }
-} */
+}

@@ -1,17 +1,18 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { getCart, storeCart } from "./cartUtils";
+import { AddToCartProps } from "../lib/definitions";
 
-interface AddToCartProps {
-  id: number;
-  modelId: string;
-  name: string;
-  brand: string;
-  price: number;
-  priceBeforeDiscount: number;
-  percentage: number;
-  shoeSize: string;
-  qty: number;
-}
+// interface AddToCartProps {
+//   id: number;
+//   modelId: number;
+//   name: string;
+//   brand: string;
+//   price: number;
+//   priceBeforeDiscount: number;
+//   percentage: number;
+//   shoeSize: string;
+//   qty: number;
+// }
 
 interface CartProps {
   cart: AddToCartProps[];
@@ -25,13 +26,12 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    increment: (
-      state,
-      action: PayloadAction<{ cartItems: AddToCartProps }>
-    ) => {
+    increment: (state, action: PayloadAction<AddToCartProps>) => {
       const {
         id,
         modelId,
+        category,
+        subCategory,
         name,
         brand,
         price,
@@ -60,6 +60,8 @@ export const cartSlice = createSlice({
         state.cart.push({
           id,
           modelId,
+          category,
+          subCategory,
           name,
           brand,
           price,
@@ -70,7 +72,7 @@ export const cartSlice = createSlice({
         });
       }
 
-      storeCart(state.cart);
+      storeCart(state.cart as unknown as AddToCartProps);
       console.log(state.cart);
     },
     decrement: (
@@ -91,16 +93,12 @@ export const cartSlice = createSlice({
         });
       }
 
-      storeCart(state.cart);
-    },
-
-    restoreCart: (state, action: PayloadAction<AddToCartProps[]>) => {
-      state.cart = action.payload;
+      storeCart(state.cart as unknown as AddToCartProps);
     },
   },
 });
 
-export const { increment, decrement, restoreCart } = cartSlice.actions;
+export const { increment, decrement } = cartSlice.actions;
 
 export const selectCart = (state: CartProps): CartProps["cart"] => state.cart; // TODO: check
 

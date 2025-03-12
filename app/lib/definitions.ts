@@ -20,6 +20,26 @@ export type DataProps = {
   sport: string[];
 };
 
+export type AddToCartProps = {
+  id: number;
+  modelId: number;
+  category: string;
+  subCategory: string;
+  name: string;
+  brand: string;
+  price: number;
+  priceBeforeDiscount: number;
+  percentage: number;
+  shoeSize: number;
+  setChooseSize?: (chooseSize: string) => void;
+  setShoeSize?: (errMsg: string) => void;
+  qty: number;
+};
+
+export type CartItemProps = {
+  cartItems: AddToCartProps;
+};
+
 export type CrumbProps = {
   path: string;
   name: string;
@@ -34,20 +54,6 @@ export type ModalProps = {
 // };
 
 // before item in cart
-
-export type AddToCartProps = {
-  id: number;
-  modelId: number;
-  name: string;
-  brand: string;
-  price: number;
-  priceBeforeDiscount: number;
-  percentage: number;
-  shoeSize: number;
-  setChooseSize?: (chooseSize: string) => void;
-  setShoeSize?: (errMsg: string) => void;
-  qty: number;
-};
 
 export type ButtonProps = {
   children?: React.ReactNode;

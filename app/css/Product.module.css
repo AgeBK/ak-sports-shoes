@@ -147,4 +147,16 @@
   .container {
     flex-direction: column;
   }
+
+  .description {
+    margin-left: 0;
+  }
+
+  .imgs {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 650px) {
 }

@@ -30,6 +30,8 @@ export default function Product({ promise }: ProductProps) {
     const {
       id,
       modelId,
+      category,
+      subCategory,
       name,
       brand,
       available,
@@ -138,6 +140,8 @@ export default function Product({ promise }: ProductProps) {
               cartItems={{
                 id,
                 modelId,
+                category,
+                subCategory,
                 name,
                 brand,
                 price,

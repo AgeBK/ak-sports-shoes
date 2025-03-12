@@ -20,7 +20,6 @@ import Link from "next/link";
 export default function Cart() {
   const dispatch = useDispatch();
   let cart: AddToCartProps[] = useSelector(selectCart);
-
   const cartDetails = { total: 0, discounts: 0 };
   const { deliveryFee } = AppData;
 
@@ -28,10 +27,8 @@ export default function Cart() {
     cart = getCart(); // TODO: ?
   }
 
-  const updateCart = (cartItems: AddToCartProps) => {
-    console.log("updateCart");
+  const updateCart = (cartItems: AddToCartProps) =>
     dispatch(increment(cartItems));
-  };
 
   const getTotal = () =>
     currency(
@@ -51,6 +48,8 @@ export default function Cart() {
                 const {
                   id,
                   modelId,
+                  category,
+                  subCategory,
                   name,
                   brand,
                   price,
@@ -60,6 +59,7 @@ export default function Cart() {
                   qty,
                 } = cartItems;
                 const img = `${modelId}-1.webp`;
+                const link = `/${category}/${subCategory}/${id}`.toLowerCase(); // TODO: utils?
                 cartDetails.total += priceBeforeDiscount * qty;
                 cartDetails.discounts = cartDetails.discounts +=
                   (priceBeforeDiscount - price) * qty;
@@ -83,12 +83,14 @@ export default function Cart() {
                       </Button>
                     </div>
                     <div className={styles.item}>
-                      <ImgFill
-                        imgSrc={img}
-                        imgAlt={name}
-                        imgStyle="cartImage"
-                        imgPriority={true}
-                      />
+                      <Link href={link}>
+                        <ImgFill
+                          imgSrc={img}
+                          imgAlt={name}
+                          imgStyle="cartImage"
+                          imgPriority={true}
+                        />
+                      </Link>
                       <div className={styles.info}>
                         <div className={styles.price}>
                           <Price

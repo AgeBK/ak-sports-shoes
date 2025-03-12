@@ -18,14 +18,21 @@
 
 .buttonCont {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .buttonCont li {
-  margin: 0 5px;
+  margin: 5px;
   border: 1px solid #d3d3d3;
 }
 
 .highlight {
   background-color: #000;
   color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .buttonCont {
+    display: none;
+  }
 }

@@ -3,6 +3,7 @@
   position: relative;
 }
 
+/* position absolute for breadcrumb */
 .nav {
   display: flex;
   padding: 5px;
@@ -20,13 +21,13 @@
   width: 100%;
 }
 
-.navItem a {
+.navItem > a {
   border-right: 1px solid #000;
   width: 100%;
   display: inline-block;
 }
 
-.navItem a:last-child {
+.navItem:last-child a {
   border-right: 0;
 }
 
@@ -35,8 +36,8 @@
 }
 
 /* .navItem:not(:hover) .subNav {
-  display: none;
-} */
+    display: none;
+  } */
 
 .navItem:not(:hover) .subNav.mens,
 .navItem:not(:hover) .subNav.womens,
@@ -55,4 +56,14 @@
   font-size: 16px;
   font-weight: normal;
   padding: 2px;
+}
+
+@media screen and (max-width: 650px) {
+  .navItem {
+    font-size: 16px;
+  }
+
+  .subNav li {
+    font-size: 14px;
+  }
 }

@@ -2,6 +2,10 @@
   padding: 20px;
 }
 
+.hdr {
+  margin-bottom: 20px;
+}
+
 .details {
   display: flex;
 }
@@ -80,7 +84,7 @@
 
 .delete {
   text-align: right;
-  margin: 20px 40px 0 0;
+  margin: 5px 40px 0 0;
   color: #555;
 }
 

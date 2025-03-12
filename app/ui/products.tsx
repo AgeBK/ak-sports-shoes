@@ -38,7 +38,7 @@ export default function Products({
 
   return (
     <>
-      <div className={styles.itemCount}>{data.length} results</div>
+      <div className={styles.itemCount}>({data.length}) Results</div>
       <ul className={styles.list}>
         {pagedData.map((val: DataProps, ind: number) => {
           const {

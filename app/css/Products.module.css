@@ -1,9 +1,6 @@
-.container {
-}
-
 .itemCount {
-  font-size: 18px;
   margin: 15px 0;
+  color: #555;
 }
 
 .list {

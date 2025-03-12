@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
@@ -47,7 +47,7 @@ export default function Cart() {
           <h2 className={styles.hdr}>My Items</h2>
           <div className={styles.details}>
             <div className={styles.items}>
-              {cart?.map((cartItems: AddToCartProps, i: number) => {
+              {cart?.map((cartItems: AddToCartProps) => {
                 const {
                   id,
                   modelId,
@@ -60,7 +60,6 @@ export default function Cart() {
                   qty,
                 } = cartItems;
                 const img = `${modelId}-1.webp`;
-                // const removeAll = qty === 1 ? true : false;
                 cartDetails.total += priceBeforeDiscount * qty;
                 cartDetails.discounts = cartDetails.discounts +=
                   (priceBeforeDiscount - price) * qty;
@@ -84,14 +83,12 @@ export default function Cart() {
                       </Button>
                     </div>
                     <div className={styles.item}>
-                      <div className={styles.img}>
-                        <ImgFill
-                          imgSrc={img}
-                          imgAlt={name}
-                          imgStyle="cartImage"
-                          imgPriority={true}
-                        />
-                      </div>
+                      <ImgFill
+                        imgSrc={img}
+                        imgAlt={name}
+                        imgStyle="cartImage"
+                        imgPriority={true}
+                      />
                       <div className={styles.info}>
                         <div className={styles.price}>
                           <Price
@@ -110,7 +107,6 @@ export default function Cart() {
                         <div className={styles.remove}>
                           <Button
                             css="cartBtn"
-                            // disabled={qty < 1}
                             onClick={() =>
                               dispatch(
                                 decrement({

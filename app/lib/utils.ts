@@ -2,7 +2,6 @@ import { AddToCartProps, DataProps } from "./definitions";
 import {
   fetchProductsByCategory,
   fetchProducstByCatSubCat,
-  fetchProductsPriceDrop,
 } from "@/app/lib/data";
 
 const sentenceCase = (s: string) => {

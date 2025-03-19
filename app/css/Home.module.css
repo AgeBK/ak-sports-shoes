@@ -1,0 +1,28 @@
+.container h2 {
+  margin-bottom: 15px;
+}
+
+.cats {
+  padding: 30px 0px 20px 20px;
+  background-color: darkgreen;
+}
+
+.cats h2,
+.cats h3 {
+  font-size: 28px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.list li {
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .list {
+    padding: 30px 0px;
+  }
+}

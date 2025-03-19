@@ -1,12 +1,12 @@
 import { AddToCartProps } from "../lib/definitions";
 
 const getCart = () => {
-  const cart = localStorage.getItem("AKShoesCart");
+  const cart = localStorage?.getItem("AKShoesCart");
   return cart ? JSON.parse(cart) : undefined;
 };
 
 const storeCart = (cart: AddToCartProps) => {
-  localStorage.setItem("AKShoesCart", JSON.stringify(cart));
+  localStorage?.setItem("AKShoesCart", JSON.stringify(cart));
 };
 
 const countCartItems = (cart: AddToCartProps[]) => {

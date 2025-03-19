@@ -10,9 +10,6 @@ export default function BreadCrumb() {
   return (
     <ul className={styles.container}>
       {pathArr.map((val) => {
-        console.log("PathArr");
-        console.log(val);
-
         trailArr.push(val);
         return (
           <li key={val}>

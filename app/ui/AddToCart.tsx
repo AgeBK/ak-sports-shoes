@@ -1,4 +1,4 @@
-import {  CartItemProps } from "../lib/definitions";
+import { CartItemProps } from "../lib/definitions";
 import { useDispatch } from "react-redux";
 import { increment } from "../slices/cartSlice";
 import Button from "./Button";
@@ -20,8 +20,6 @@ export default function AddToCart({ cartItems }: CartItemProps) {
     <div className={styles.addCartContainer}>
       <Button css="addCart" onClick={handleClick}>
         Add to cart
-        {/* <CartImage itemAdded={isAdded} />
-      <span>{id === itemId ? "Item Added" : "Add to cart"}</span> */}
       </Button>
     </div>
   );

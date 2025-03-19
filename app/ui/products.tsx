@@ -69,8 +69,8 @@ export default function Products({
                 <Img
                   imgSrc={imageSrc}
                   imgAlt={name}
-                  imgWidth={200}
-                  imgHeight={200}
+                  imgWidth={240}
+                  imgHeight={240}
                 />
                 <Price
                   price={price}

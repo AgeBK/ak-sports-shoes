@@ -40,6 +40,10 @@ export type CartItemProps = {
   cartItems: AddToCartProps;
 };
 
+export interface CartProps {
+  cart: AddToCartProps[];
+}
+
 export type CrumbProps = {
   path: string;
   name: string;

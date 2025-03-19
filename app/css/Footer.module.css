@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  padding: 20px;
+  align-items: anchor-center;
+}
+
+.ak {
+  flex-grow: 1;
+}
+
+.payments {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.payments li {
+  margin-right: 5px;
+}

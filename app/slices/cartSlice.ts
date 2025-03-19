@@ -1,22 +1,6 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { getCart, storeCart } from "./cartUtils";
-import { AddToCartProps } from "../lib/definitions";
-
-// interface AddToCartProps {
-//   id: number;
-//   modelId: number;
-//   name: string;
-//   brand: string;
-//   price: number;
-//   priceBeforeDiscount: number;
-//   percentage: number;
-//   shoeSize: string;
-//   qty: number;
-// }
-
-interface CartProps {
-  cart: AddToCartProps[];
-}
+import { AddToCartProps, CartProps } from "../lib/definitions";
 
 const initialState: CartProps = {
   cart: [],
@@ -48,8 +32,10 @@ export const cartSlice = createSlice({
         cart = getCart();
       }
 
-      const itemInCart = cart?.find((val) => val.id === id);
-      console.log(itemInCart);
+      // check id and shoe size for match
+      const itemInCart = cart?.find(
+        (val) => val.id === id && val.shoeSize === shoeSize
+      );
 
       if (itemInCart) {
         state.cart = cart?.map((val) => {

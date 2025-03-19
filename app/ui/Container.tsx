@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Header from "./Header";
-// import Footer from "./Footer"; // TODO:
+import Footer from "./Footer";
 import styles from "@/app/css/Container.module.css";
 
 export default function Container({ children }: { children: ReactNode }) {
@@ -8,7 +8,7 @@ export default function Container({ children }: { children: ReactNode }) {
     <div className={styles.container}>
       <Header />
       {children}
-      {/* <Footer/> */}
+      <Footer />
     </div>
   );
 }

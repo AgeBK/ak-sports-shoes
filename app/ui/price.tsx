@@ -21,7 +21,7 @@ export default function Price({
       <strong className={styles.currentPrice}>{formatedPrice}</strong>
       <br />
       <s className={styles.was}>Was {currency(priceBeforeDiscount)}</s>
-      <span className={styles.percentage}>{percentage}% off</span>
+      <span className={styles.percentage}>{Math.round(percentage)}% off</span>
       <br />
     </>
   );

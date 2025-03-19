@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function Home() {
   const { navItems } = AppData;
-
   return (
     <div className={styles.container}>
       <h2 className={styles.home}>Hot Specials</h2>

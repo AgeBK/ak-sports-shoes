@@ -16,5 +16,13 @@
   ],
   "categoryPageInfo": "Discover our wide range of [replace] shoes. We stand by the quality of our products and we can offer a warranty on most of our shoes in store",
   "pageLimit": 20,
-  "deliveryFee": 9.95
+  "deliveryFee": 9.95,
+  "payOptions": [
+    { "src": "applePay.png", "alt": "Apple Pay" },
+    { "src": "paypal.png", "alt": "Pay Pal" },
+    { "src": "mastercard.png", "alt": "Master Card" },
+    { "src": "afterPay.png", "alt": "After Pay" },
+    { "src": "visa.png", "alt": "Visa" },
+    { "src": "AE.png", "alt": "American Express" }
+  ]
 }

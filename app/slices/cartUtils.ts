@@ -1,8 +1,10 @@
 import { AddToCartProps } from "../lib/definitions";
 
 const getCart = () => {
-  const cart = localStorage?.getItem("AKShoesCart");
-  return cart ? JSON.parse(cart) : undefined;
+  if (localStorage) {
+    const cart = localStorage?.getItem("AKShoesCart"); // TODO: check
+    return cart ? JSON.parse(cart) : undefined;
+  }
 };
 
 const storeCart = (cart: AddToCartProps) => {

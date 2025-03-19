@@ -8,6 +8,7 @@ import Img from "./Image";
 import Price from "./Price";
 import styles from "@/app/css/Carousel.module.css";
 import styles2 from "@/app/css/Products.module.css";
+import Button from "./Button";
 
 export default function Carousel({ data }: { data: DataProps[] }) {
   // show either 4,3,2 items depending on screen width
@@ -18,12 +19,8 @@ export default function Carousel({ data }: { data: DataProps[] }) {
   let items = 0;
   let screenWidth = 0;
 
-  //kids trail missing image
-
   useEffect(() => {
-    console.log("UE");
     lastPageRef.current = data.length / items - 1;
-
     const id = setInterval(
       () =>
         lastPageRef.current === pageIndex
@@ -31,13 +28,11 @@ export default function Carousel({ data }: { data: DataProps[] }) {
           : setPageIndex(pageIndex + 1),
       timeInterval
     );
-
     return () => clearInterval(id);
   }, [pageIndex, timeInterval, data.length, items]);
 
   if (window) {
     screenWidth = window.innerWidth;
-
     if (screenWidth > 1134) {
       items = 4;
     } else if (screenWidth > 862) {
@@ -47,15 +42,32 @@ export default function Carousel({ data }: { data: DataProps[] }) {
     }
   }
 
-  console.log("items: " + items);
-
   const pagedData = data.filter(
     (val, i) => i >= items * pageIndex && i < items * pageIndex + items
   );
-  console.log(pagedData);
+
+  const handlePaging = (index: number) => {
+    if (index > 0) {
+      lastPageRef.current === pageIndex
+        ? setPageIndex(0)
+        : setPageIndex(pageIndex + index);
+    } else {
+      pageIndex === 0
+        ? setPageIndex(lastPageRef.current)
+        : setPageIndex(pageIndex + index);
+    }
+  };
 
   return (
     <div className={styles.container}>
+      <Button css="carousel" onClick={() => handlePaging(-1)}>
+        <Img
+          imgSrc={"arrowLeft.png"}
+          imgAlt={"back"}
+          imgWidth={30}
+          imgHeight={30}
+        />
+      </Button>
       <ul className={styles2.list}>
         {pagedData.map((val: DataProps, ind: number) => {
           const {
@@ -90,6 +102,14 @@ export default function Carousel({ data }: { data: DataProps[] }) {
           );
         })}
       </ul>
+      <Button css="carousel" onClick={() => handlePaging(1)}>
+        <Img
+          imgSrc={"arrowRight.png"}
+          imgAlt={"forward"}
+          imgWidth={30}
+          imgHeight={30}
+        />
+      </Button>
     </div>
   );
 }

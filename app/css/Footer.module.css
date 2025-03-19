@@ -4,8 +4,19 @@
   align-items: anchor-center;
 }
 
-.ak {
+.ak,
+.ak a {
   flex-grow: 1;
+  color: #999;
+}
+
+.ak a {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.ak a:hover {
+  color: #555;
 }
 
 .payments {

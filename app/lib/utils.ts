@@ -47,9 +47,6 @@ const fetchCategoryPageData = async (arg1: string, arg2?: string) => {
     }
   } else {
     switch (arg1) {
-      case "price-drop":
-        arr = await fetchProductsPriceDrop();
-        break;
       case "mens":
       case "womens":
       case "kids":
@@ -93,7 +90,6 @@ const updateCart = (
   newCart[index].qty = newCart[index].qty + val;
   localStorage.setItem("AKShoesCart", JSON.stringify(newCart));
   setCart(newCart);
-  // itemsInCart();
 };
 
 const deleteCart = (
@@ -106,17 +102,6 @@ const deleteCart = (
   setCart(newCart);
 };
 
-// const itemsInCart = () => {
-//   // JSON.parse(localStorage.getItem("AKShoesCart"))?.length;
-//   const arr = JSON.parse(localStorage.getItem("AKShoesCart"));
-//   const variable = arr.reduce((acc, val) => {
-//     acc = acc + val.qty;
-//     return acc;
-//   }, 0);
-//   console.log(variable);
-//   return variable;
-// };
-
 export {
   fetchCategoryPageData,
   camelise,
@@ -126,5 +111,4 @@ export {
   currency,
   updateCart,
   deleteCart,
-  // itemsInCart,
 };

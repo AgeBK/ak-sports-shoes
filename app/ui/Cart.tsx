@@ -9,7 +9,7 @@ import { increment, decrement } from "@/app/slices/cartSlice";
 import Img from "@/app/ui/Image";
 import Button from "./Button";
 import Price from "./Price";
-// import ErrorMain from "./ErrorMain";
+// import ErrorMain from "./ErrorMain"; // TODO: ?
 import { AddToCartProps } from "@/app/lib/definitions";
 import { currency } from "../lib/utils";
 import AppData from "../lib/appData.json";
@@ -163,7 +163,6 @@ export default function Cart() {
               </div>
             </div>
           </div>
-          {/* <h3>TODO: Carousel here??</h3> */}
         </div>
       ) : (
         <div className={styles.empty}>

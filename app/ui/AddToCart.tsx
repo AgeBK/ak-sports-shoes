@@ -1,5 +1,5 @@
-import { CartItemProps } from "../lib/definitions";
 import { useDispatch } from "react-redux";
+import { CartItemProps } from "../lib/definitions";
 import { increment } from "../slices/cartSlice";
 import Button from "./Button";
 import styles from "@/app/css/AddToCart.module.css";

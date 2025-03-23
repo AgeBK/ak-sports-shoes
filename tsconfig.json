@@ -1,3 +1,4 @@
+// configure how the TypeScript compiler processes your TypeScript code
 {
   "compilerOptions": {
     "target": "ES2017",

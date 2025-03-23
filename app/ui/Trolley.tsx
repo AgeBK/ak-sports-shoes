@@ -5,13 +5,13 @@ import Img from "./Image";
 import Link from "next/link";
 import { CartProps } from "../lib/definitions";
 import styles from "@/app/css/Trolley.module.css";
-import { getCart, countCartItems } from "../slices/cartUtils";
+import { getCartLocalStorage, countCartItems } from "../slices/cartUtils";
 
 export default function Trolley() {
   let cart: CartProps = useSelector(selectCart);
 
   if (!cart.length) {
-    cart = getCart();
+    cart = getCartLocalStorage();
   }
 
   const countItems = countCartItems(cart);

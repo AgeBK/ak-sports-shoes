@@ -53,9 +53,7 @@ export type ModalProps = {
   setShowModal: (show: boolean) => void;
 };
 
-// export type CategoryParamsProps = {
-//   params: { urlCategory: string; urlSubCategory: string };
-// };
+export type KeyStringProps = { [key: string]: string };
 
 // before item in cart
 
@@ -78,7 +76,6 @@ export type ImgProps = {
 export type ImgFillProps = {
   imgSrc: string;
   imgAlt: string;
-  // imageStyle: keyof typeof styles;
   imgStyle: string;
   imgPriority?: boolean;
 };

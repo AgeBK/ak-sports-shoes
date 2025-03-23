@@ -1,13 +1,14 @@
 import { AddToCartProps } from "../lib/definitions";
 
-const getCart = () => {
-  if (localStorage) {
+const getCartLocalStorage = () => {
+  // TODO: getting errors localStorage sometimes
+  if (typeof window && localStorage) {
     const cart = localStorage?.getItem("AKShoesCart"); // TODO: check
     return cart ? JSON.parse(cart) : undefined;
   }
 };
 
-const storeCart = (cart: AddToCartProps) => {
+const storeCartLocalStorage = (cart: AddToCartProps) => {
   localStorage?.setItem("AKShoesCart", JSON.stringify(cart));
 };
 
@@ -16,9 +17,7 @@ const countCartItems = (cart: AddToCartProps[]) => {
     acc = acc + val.qty;
     return acc;
   }, 0);
-
-  console.log(count);
   return count;
 };
 
-export { storeCart, getCart, countCartItems };
+export { storeCartLocalStorage, getCartLocalStorage, countCartItems };

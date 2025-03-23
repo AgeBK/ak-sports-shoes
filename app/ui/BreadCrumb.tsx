@@ -23,6 +23,9 @@ const Crumb = ({ path, name }: CrumbProps) => (
 export default function BreadCrumb(): JSX.Element | null {
   const paths: string = usePathname();
 
+  console.log("paths");
+  console.log(paths);
+
   if (paths !== "/") {
     const pathNames: string[] = paths.split("/").filter((path) => path);
     const pathItems: { name: string; path: string }[] = pathNames.map(
@@ -32,16 +35,21 @@ export default function BreadCrumb(): JSX.Element | null {
       })
     );
 
-    const html: JSX.Element[] = pathItems.map((val) => {
-      const { name, path } = val;
-      return <Crumb path={path} name={name} key={name} />;
-    });
+    const html: JSX.Element[] = pathItems.map(({ name, path }) => (
+      <Crumb path={path} name={name} key={name} />
+    ));
 
     return (
       <ul className={styles.breadCrumb}>
         <Crumb path="/" name="Home" key="home" />
         {html}
       </ul>
+    );
+  } else {
+    return (
+      <div className={styles.banner}>
+        Free delivery on all orders over $150<span>(conditions apply)</span>
+      </div>
     );
   }
 

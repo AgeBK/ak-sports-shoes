@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
-import { getCart } from "../slices/cartUtils";
+import { getCartLocalStorage } from "../slices/cartUtils";
 import { increment, decrement } from "@/app/slices/cartSlice";
 import Img from "@/app/ui/Image";
 import Button from "./Button";
@@ -24,7 +24,7 @@ export default function Cart() {
   const { deliveryFee } = AppData;
 
   if (!cart.length) {
-    cart = getCart(); // TODO: ?
+    cart = getCartLocalStorage(); // TODO: ?
   }
 
   const updateCart = (cartItems: AddToCartProps) =>
@@ -44,7 +44,7 @@ export default function Cart() {
           <h2 className={styles.hdr}>My Items</h2>
           <div className={styles.details}>
             <div className={styles.items}>
-              {cart?.map((cartItems: AddToCartProps) => {
+              {cart?.map((cartItems: AddToCartProps, i: number) => {
                 const {
                   id,
                   modelId,
@@ -65,12 +65,12 @@ export default function Cart() {
                   (priceBeforeDiscount - price) * qty;
 
                 return (
-                  <div className={styles.itemContainer} key={id}>
+                  <div className={styles.itemContainer} key={i}>
                     <div className={styles.delete}>
                       <Button
                         css="cartBtn"
                         onClick={() =>
-                          dispatch(decrement({ id, removeAll: true }))
+                          dispatch(decrement({ id, removeAll: true, shoeSize }))
                         }
                       >
                         <Img
@@ -114,6 +114,7 @@ export default function Cart() {
                                 decrement({
                                   id,
                                   removeAll: qty === 1 ? true : false,
+                                  shoeSize,
                                 })
                               )
                             }

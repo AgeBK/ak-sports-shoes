@@ -1,9 +1,10 @@
 import React from "react";
+import Link from "next/link";
 import CarouselMain from "./CarouselMain";
 import AppData from "../lib/appData.json";
 import ImgFill from "./ImageFill";
+import HomeOptions from "./HomeOptions";
 import styles from "@/app/css/Home.module.css";
-import Link from "next/link";
 
 export default function Home() {
   const { navItems } = AppData;
@@ -11,7 +12,7 @@ export default function Home() {
     <div className={styles.container}>
       <h2 className={styles.home}>Hot Specials</h2>
       <CarouselMain />
-      <hr />
+      <HomeOptions />
       <div className={styles.cats}>
         <h2>Categories</h2>
         <ul className={styles.list}>

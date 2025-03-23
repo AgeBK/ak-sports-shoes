@@ -1,11 +1,12 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { getCart, storeCart } from "./cartUtils";
+import { getCartLocalStorage, storeCartLocalStorage } from "./cartUtils";
 import { AddToCartProps, CartProps } from "../lib/definitions";
 
 const initialState: CartProps = {
   cart: [],
 };
 
+// TODO: remove logs
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -26,10 +27,8 @@ export const cartSlice = createSlice({
       } = action.payload; // TODO: destructured, why?
 
       let { cart } = state;
-      console.log(current(state.cart));
-
       if (!cart.length) {
-        cart = getCart();
+        cart = getCartLocalStorage();
       }
 
       // check id and shoe size for match
@@ -39,7 +38,7 @@ export const cartSlice = createSlice({
 
       if (itemInCart) {
         state.cart = cart?.map((val) => {
-          if (val.id === id) val.qty++;
+          if (val.id === id && val.shoeSize === shoeSize) val.qty++;
           return val;
         });
       } else {
@@ -57,29 +56,30 @@ export const cartSlice = createSlice({
           qty,
         });
       }
-
-      storeCart(state.cart as unknown as AddToCartProps);
-      console.log(state.cart);
+      storeCartLocalStorage(state.cart as unknown as AddToCartProps);
     },
     decrement: (
       state,
-      action: PayloadAction<{ id: number; removeAll: boolean }>
+      action: PayloadAction<{
+        id: number;
+        removeAll: boolean;
+        shoeSize: number;
+      }>
     ) => {
-      const { id, removeAll } = action.payload;
-      console.log(current(state.cart));
-
+      const { id, removeAll, shoeSize } = action.payload;
       if (removeAll) {
         // remove item
-        state.cart = state.cart.filter((val) => val.id !== id);
+        state.cart = state.cart.filter(
+          (val) => val.id !== id || val.shoeSize !== shoeSize
+        );
       } else {
         // reduce quantity by 1
         state.cart.map((val) => {
-          if (val.id === id) val.qty--;
+          if (val.id === id && val.shoeSize === shoeSize) val.qty--;
           return val;
         });
       }
-
-      storeCart(state.cart as unknown as AddToCartProps);
+      storeCartLocalStorage(state.cart as unknown as AddToCartProps);
     },
   },
 });

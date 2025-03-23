@@ -15,13 +15,18 @@ export default function Header() {
           <div className={styles.ak}>
             <Link href="/">
               <Img
-                imgSrc="AKlogo.webp"
+                imgSrc="AK.webp"
                 imgAlt="AK Sports Store"
-                imgWidth={160}
+                imgWidth={60}
                 imgHeight={35}
               />
             </Link>
           </div>
+          <span
+            className={`${styles.underlined} ${styles.ulineOver} ${styles.akText}`}
+          >
+            Sports Shoes
+          </span>
         </div>
         <div className={styles.lge}>
           <Nav />

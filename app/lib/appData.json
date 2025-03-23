@@ -24,5 +24,12 @@
     { "src": "afterPay.png", "alt": "After Pay" },
     { "src": "visa.png", "alt": "Visa" },
     { "src": "AE.png", "alt": "American Express" }
+  ],
+  "storeOptions": [
+    { "src": "magnify.png", "text": "Find a store" },
+    { "src": "package.png", "text": "Click and Collect" },
+    { "src": "delivery.png", "text": "Same day delivery" },
+    { "src": "repair.png", "text": "Repairs and service" },
+    { "src": "card.png", "text": "Shop gift cards" }
   ]
 }

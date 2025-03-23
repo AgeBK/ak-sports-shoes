@@ -8,7 +8,7 @@
 }
 
 .home {
-  color: green;
+  color: #06b47d;
 }
 
 .crumbs {
@@ -21,7 +21,7 @@
 .crumbs ul li a {
   display: block;
   height: 13px;
-  background: #d3d3d3;
+  background: #06b47d;
   text-align: center;
   padding: 8px 10px 0 10px;
   position: relative;
@@ -42,7 +42,7 @@
   content: "";
   border-top: 10px solid #fff;
   border-bottom: 10px solid #fff;
-  border-left: 10px solid #d3d3d3;
+  border-left: 10px solid #06b47d;
   position: absolute;
   right: -10px;
   top: 0;
@@ -56,4 +56,20 @@
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.banner {
+  background-color: #06b47d;
+  border: 1px solid #000;
+  color: #fff;
+  padding: 5px;
+  width: 100%;
+  color: #000;
+  text-align: center;
+}
+
+.banner span {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
 }

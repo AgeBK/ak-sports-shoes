@@ -11,7 +11,6 @@ export default function HomeOptions() {
     <ul className={styles.list}>
       {storeOptions.map((val) => {
         const { src, text } = val;
-        console.log(src);
 
         return (
           <li key={text}>

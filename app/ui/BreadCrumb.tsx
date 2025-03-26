@@ -23,9 +23,6 @@ const Crumb = ({ path, name }: CrumbProps) => (
 export default function BreadCrumb(): JSX.Element | null {
   const paths: string = usePathname();
 
-  console.log("paths");
-  console.log(paths);
-
   if (paths !== "/") {
     const pathNames: string[] = paths.split("/").filter((path) => path);
     const pathItems: { name: string; path: string }[] = pathNames.map(

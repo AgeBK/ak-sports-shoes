@@ -44,10 +44,6 @@ export default function Paging({
   const prodLength = products.length;
   const pagesReq = Math.ceil(prodLength / pageLimit);
 
-  console.log("Paging");
-  console.log(currentPage);
-  console.log(pagesReq);
-
   if (prodLength > pageLimit) {
     return (
       <div className={styles.container}>

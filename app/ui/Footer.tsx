@@ -6,7 +6,6 @@ import styles from "@/app/css/Footer.module.css";
 export default function Footer() {
   const yr = new Date().getFullYear();
   const { payOptions } = AppData;
-  console.log(yr);
 
   return (
     <div className={styles.container}>

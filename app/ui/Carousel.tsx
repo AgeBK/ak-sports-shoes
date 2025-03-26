@@ -9,7 +9,6 @@ import CarouselItem from "./CarouselItem";
 import styles from "@/app/css/Carousel.module.css";
 
 export default function Carousel({ data }: { data: DataProps[] }) {
-  console.log("usePageWidth: " + usePageWidth());
   const [pageIndex, setPageIndex] = useState(0);
   const lastPageRef = useRef(0);
   const timeInterval = 3000;

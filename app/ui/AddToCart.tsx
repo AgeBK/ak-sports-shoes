@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { CartItemProps } from "../lib/definitions";
 import { increment } from "../slices/cartSlice";
 import Button from "./Button";
-import styles from "@/app/css/AddToCart.module.css";
 
 export default function AddToCart({ cartItems }: CartItemProps) {
   const dispatch = useDispatch();
@@ -17,10 +16,8 @@ export default function AddToCart({ cartItems }: CartItemProps) {
   };
 
   return (
-    <div className={styles.addCartContainer}>
-      <Button css="addCart" onClick={handleClick}>
-        Add to cart
-      </Button>
-    </div>
+    <Button css="addCart" onClick={handleClick}>
+      Add to cart
+    </Button>
   );
 }

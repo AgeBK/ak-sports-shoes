@@ -1,9 +1,10 @@
 import { Suspense, use } from "react";
 import { fetchCategoryPageData } from "@/app/lib/utils";
-import appData from "@/app/lib/appData.json";
 import { DataProps } from "@/app/lib/definitions";
 import { sentenceCase } from "@/app/lib/utils";
+import appData from "@/app/lib/appData.json";
 import Products from "@/app/ui/Products";
+import Loading from "@/app/ui/loading";
 import styles from "@/app/css/Page.module.css";
 
 export default function Page({
@@ -23,7 +24,7 @@ export default function Page({
     <article>
       <h2 className={styles.infoBlock}>{prodHdr}</h2>
       <div>{prodInfo}</div>
-      <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Suspense fallback={<Loading />}>
         <Products promise={promise} />
       </Suspense>
     </article>

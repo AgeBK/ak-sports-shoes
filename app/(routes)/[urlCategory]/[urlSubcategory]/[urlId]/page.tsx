@@ -1,7 +1,8 @@
 import { Suspense, use } from "react";
-import Product from "@/app/ui/Product";
 import { fetchProductById } from "@/app/lib/data";
 import { DataProps } from "@/app/lib/definitions";
+import Product from "@/app/ui/Product";
+import Loading from "@/app/ui/loading";
 
 export default function Page({
   params,
@@ -16,7 +17,7 @@ export default function Page({
   const promise: Promise<DataProps> = fetchProductById(urlId); // suspense handles await
 
   return (
-    <Suspense fallback={<p>⌛Downloading message...</p>}>
+    <Suspense fallback={<Loading />}>
       <article>
         <Product promise={promise} />
       </article>

@@ -2,10 +2,10 @@ import { AddToCartProps } from "../lib/definitions";
 
 const getCartLocalStorage = () => {
   // TODO: getting errors localStorage sometimes
-  if (typeof localStorage !== "undefined") {
-    const cart = localStorage?.getItem("AKShoesCart"); // TODO: check
-    return cart ? JSON.parse(cart) : undefined;
-  }
+  //if (typeof localStorage !== "undefined") {
+  const cart = localStorage?.getItem("AKShoesCart"); // TODO: check
+  return cart ? JSON.parse(cart) : undefined;
+  // }
 };
 
 const storeCartLocalStorage = (cart: AddToCartProps) => {

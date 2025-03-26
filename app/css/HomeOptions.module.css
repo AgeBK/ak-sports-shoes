@@ -23,5 +23,11 @@
   font-weight: bold;
 }
 
-.list a {
+@media screen and (max-width: 650px) {
+  .list li {
+    display: flex;
+    min-width: 270px;
+    padding: 5px;
+    text-align: center;
+  }
 }

@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJS + React + RTK + TypeScript
 
-## Getting Started
+## About
 
-First, run the development server:
+I built this e-Commerce site just for a bit of coding practice. I've built a lot of websites similar to this one. The main e-Commerce site I've built can be viewed here <a target="_blank" href="https://ak-fine-wines-ts.netlify.app/">AK Fine Wines</a>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Here's a link to the code base for the sports shoes site: <a target="_blank" href="https://github.com/AgeBK/ak-sports-shoes">GitHub</a>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I wrote all of the code (JS/CSS/HTML) myself. The site uses RTK and Postgres as well.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Description
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I've built a shopping cart as well which you can add products to. The cart uses RTK which can be accessed anywhere in the site. You can increase and decrease amounts and enter a correct discount code. Calculations are automatically made in the cart for a variety of discounts that apply to a range of many products. The idea being that the user can have a simulated on-line shopping experience.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Over 200 products
+- Over 20 components
+- Search bar (MUI auto complete)
+- Shopping cart
+- Responsive carousel
+- Paging
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The <b>home</b> page lists the specials that the site has to offer, similar to what you'd see online, it's basically a navigation page/entry point for the current specials and the other 2 pages.
 
-## Deploy on Vercel
+The <b>category</b> page lists all the products for a particular category of shoes depending what URL you come in on. eg: mens, womens, kids.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The <b>product</b> page displays all the details about an individual product.
